@@ -8,5 +8,7 @@ bootJar {
 
 dependencies {
     compileOnly 'org.springframework.boot:spring-boot-starter'
+    compileOnly lombok
+    compile swagger
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }

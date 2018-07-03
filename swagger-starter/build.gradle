@@ -1,0 +1,12 @@
+group = 'frame.swagger'
+version = '1.0.0'
+
+bootJar {
+    baseName = 'swagger-starter'
+    version =  '1.0.0'
+}
+
+dependencies {
+    compileOnly 'org.springframework.boot:spring-boot-starter'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+}

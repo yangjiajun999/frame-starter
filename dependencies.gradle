@@ -1,0 +1,6 @@
+ext {
+    swagger = [
+        'io.springfox:springfox-swagger2:2.9.0',
+        'io.springfox:springfox-swagger-ui:2.9.0'
+    ]
+}

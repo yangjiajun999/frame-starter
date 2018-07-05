@@ -1,14 +1,8 @@
 group = 'frame.swagger'
 version = '1.0.0'
 
-bootJar {
-    baseName = 'swagger-starter'
-    version =  '1.0.0'
-}
-
 dependencies {
-    compileOnly 'org.springframework.boot:spring-boot-starter'
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
     compileOnly lombok
     compile swagger
-    testCompile 'org.springframework.boot:spring-boot-starter-test'
 }

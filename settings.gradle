@@ -1,5 +1,6 @@
 rootProject.name = 'frame-starter'
 include 'swagger-starter'
+include 'swagger-vue'
 include 'test-starter'
 include 'common-starter'
 

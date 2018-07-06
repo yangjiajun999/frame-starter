@@ -1,80 +1,71 @@
-## 使用
+# 配置说明 ##
 
-- 在应用主类中增加`@EnableSwagger2Doc`注解
+`spring.swagger.enabled`：提供该配置目的是方便多环境关闭，一般生产环境中不会暴露它，这时候就可以通过 `java -jar xx.jar --spring.swagger.enabled=false` 动态关闭，也可以在多环境配置写好
 
-```java
-@EnableSwagger2Doc
-@SpringBootApplication
-public class Bootstrap {
-    public static void main(String[] args) {
-        SpringApplication.run(Bootstrap.class, args);
-    }
-}
+
+### properties ###
+
+```
+spring.swagger.enabled=是否启用swagger，默认：true
+spring.swagger.title=标题
+spring.swagger.description=描述信息
+spring.swagger.version=版本
+spring.swagger.license=许可证
+spring.swagger.licenseUrl=许可证URL
+spring.swagger.termsOfServiceUrl=服务条款URL
+spring.swagger.contact.name=维护人
+spring.swagger.contact.url=维护人URL
+spring.swagger.contact.email=维护人email
+spring.swagger.base-package=swagger扫描的基础包，默认：全扫描
+spring.swagger.base-path=需要处理的基础URL规则，默认：/**
+spring.swagger.exclude-path=需要排除的URL规则，默认：空
+spring.swagger.host=文档的host信息，默认：空
+spring.swagger.globalOperationParameters[0].name=参数名
+spring.swagger.globalOperationParameters[0].description=描述信息
+spring.swagger.globalOperationParameters[0].modelRef=指定参数类型
+spring.swagger.globalOperationParameters[0].parameterType=指定参数存放位置,参考ParamType:(header,query,path,body,form)
+spring.swagger.globalOperationParameters[0].required=指定参数是否必传，默认false
+#下面分组是
+spring.swagger.groups.<name>.basePackage=swagger扫描的路径
+#比如
+spring.swagger.groups.基础信息.basePackage=com.battcn.controller.basic
+
+# 关闭 JSR
+spring.swagger.validator-plugin=false
+# 全局消息体
+spring.swagger.global-response-messages.GET[0].code=400
+spring.swagger.global-response-messages.GET[0].message=server response 400
+spring.swagger.global-response-messages.POST[0].code=400
+spring.swagger.global-response-messages.POST[0].message=server response 400
+spring.swagger.global-response-messages.POST[1].code=404
+spring.swagger.global-response-messages.POST[1].message=server response 404
 ```
 
-## 配置示例
 
-```properties
-swagger.enabled=true
+### yaml ###
 
-swagger.title=swagger-starter
-swagger.description=Starter for swagger 2.x
-swagger.version=1.0
-swagger.license=Apache License, Version 2.0
-swagger.licenseUrl=https://www.apache.org/licenses/LICENSE-2.0.html
-swagger.termsOfServiceUrl=https://github.com/dyc87112/spring-boot-starter-swagger
-swagger.contact.name=didi
-swagger.contact.url=http://blog.didispace.com
-swagger.contact.email=dyc87112@qq.com
-swagger.base-package=com.didispace
-swagger.base-path=/**
-swagger.exclude-path=/error, /ops/**
+以下为 `application.yml` 配置示例
 
-swagger.globalOperationParameters[0].name=name one
-swagger.globalOperationParameters[0].description=some description one
-swagger.globalOperationParameters[0].modelRef=string
-swagger.globalOperationParameters[0].parameterType=header
-swagger.globalOperationParameters[0].required=true
-swagger.globalOperationParameters[1].name=name two
-swagger.globalOperationParameters[1].description=some description two
-swagger.globalOperationParameters[1].modelRef=string
-swagger.globalOperationParameters[1].parameterType=body
-swagger.globalOperationParameters[1].required=false
-
-// 取消使用默认预定义的响应消息,并使用自定义响应消息
-swagger.apply-default-response-messages=false
-swagger.global-response-message.get[0].code=401
-swagger.global-response-message.get[0].message=401get
-swagger.global-response-message.get[1].code=500
-swagger.global-response-message.get[1].message=500get
-swagger.global-response-message.get[1].modelRef=ERROR
-swagger.global-response-message.post[0].code=500
-swagger.global-response-message.post[0].message=500post
-swagger.global-response-message.post[0].modelRef=ERROR
-```
-
-## 配置说明
-
-### 默认配置
-
-```properties
-- swagger.enabled=是否启用swagger，默认：true
-- swagger.title=标题
-- swagger.description=描述
-- swagger.version=版本
-- swagger.license=许可证
-- swagger.licenseUrl=许可证URL
-- swagger.termsOfServiceUrl=服务条款URL
-- swagger.contact.name=维护人
-- swagger.contact.url=维护人URL
-- swagger.contact.email=维护人email
-- swagger.base-package=swagger扫描的基础包，默认：全扫描
-- swagger.base-path=需要处理的基础URL规则，默认：/**
-- swagger.exclude-path=需要排除的URL规则，默认：空
-- swagger.host=文档的host信息，默认：空
-- swagger.globalOperationParameters[0].name=参数名
-- swagger.globalOperationParameters[0].description=描述信息
-- swagger.globalOperationParameters[0].modelRef=指定参数类型
-- swagger.globalOperationParameters[0].parameterType=指定参数存放位置,可选header,query,path,body.form
-- swagger.globalOperationParameters[0].required=指定参数是否必传，true,false
+``` yaml
+spring:
+  swagger:
+    enabled: true
+    title: 标题
+    description: 描述信息
+    version: 系统版本号
+    contact:
+      name: 维护者信息
+    base-package: swagger扫描的基础包，默认：全扫描(分组情况下此处可不配置)
+    #全局参数,比如Token之类的验证信息可以全局话配置
+    global-operation-parameters:
+    -   description: 'Token信息,必填项'
+        modelRef: 'string'
+        name: 'Authorization'
+        parameter-type: 'header'
+        required: true
+    groups:
+      basic-group:
+        base-package: com.battcn.controller.basic
+      system-group:
+        base-package: com.battcn.controller.system
 ```

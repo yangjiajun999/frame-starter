@@ -1,0 +1,17 @@
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}")
+    compile druid
+    compileOnly lombok
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: "http://192.168.4.32:8081/repository/elearning/") {
+            authentication(userName: "retechcorp", password: "123456")
+        }
+        pom.version = "1.0"
+        pom.artifactId = "druid-starter"
+        pom.groupId = "frame.starter"
+    }
+}

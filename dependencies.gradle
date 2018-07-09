@@ -5,4 +5,5 @@ ext {
         'io.springfox:springfox-bean-validators:2.8.0'
     ]
     lombok = 'org.projectlombok:lombok:1.16.18'
+    druid = 'com.alibaba:druid:1.1.10'
 }

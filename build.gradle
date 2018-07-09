@@ -9,7 +9,11 @@ allprojects {
 subprojects {
     apply plugin: 'java'
     apply plugin: 'eclipse'
+    apply plugin: 'maven'
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
+
+    group = 'frame.starter'
+    version = '1.0.0'
 }

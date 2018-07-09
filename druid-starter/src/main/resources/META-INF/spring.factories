@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+frame.starter.druid.autoconfigure.DruidDataSourceAutoConfigure

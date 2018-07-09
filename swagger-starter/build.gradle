@@ -1,6 +1,3 @@
-group = 'frame.swagger'
-version = '1.0.0'
-
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
     compile("org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}")

@@ -2,3 +2,5 @@ rootProject.name = 'frame-starter'
 include 'swagger-starter'
 include 'test-starter'
 include 'common-starter'
+include 'druid-starter'
+
